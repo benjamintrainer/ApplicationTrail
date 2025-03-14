@@ -1,0 +1,49 @@
+<div>
+  <h1>Application <%= @the_application.id %> Details</h1>
+
+  <div>
+    <a href="/applications">Go back</a> |
+    <a href="/modify_application/<%= @the_application.id %>">Edit</a> |
+    <a href="/delete_application/<%= @the_application.id %>" data-confirm="Are you sure?">Delete</a>
+  </div>
+
+  <hr>
+
+  <table border="1" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <th>Role</th>
+      <td><%= @the_application.role %></td>
+    </tr>
+    <tr>
+      <th>Company</th>
+      <td><%= @the_application.company %></td>
+    </tr>
+    <tr>
+      <th>Location</th>
+      <td><%= @the_application.location %></td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td><%= @the_application.status %></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td><%= @the_application.description %></td>
+    </tr>
+    <tr>
+      <th>User</th>
+      <td><%= @the_application.user_id %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= time_ago_in_words(@the_application.created_at) %> ago</td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= time_ago_in_words(@the_application.updated_at) %> ago</td>
+    </tr>
+  </table>
+
+  <hr>
+</div>
+

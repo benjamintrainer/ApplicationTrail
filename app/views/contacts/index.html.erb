@@ -1,0 +1,81 @@
+<div>
+  <h1>Contact List</h1>
+</div>
+
+<hr>
+
+<div>
+  <h2>Add a New Contact</h2>
+
+  <form action="/insert_contact" method="post" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+    
+    <div>
+      <label for="email_box">Email</label><br>
+      <input type="text" id="email_box" name="query_email">
+    </div>
+
+    <div>
+      <label for="phone_box">Phone</label><br>
+      <input type="text" id="phone_box" name="query_phone">
+    </div>
+
+    <div>
+      <label for="linkedin_box">LinkedIn</label><br>
+      <input type="text" id="linkedin_box" name="query_linkedin">
+    </div>
+
+    <div>
+      <label for="company_box">Company</label><br>
+      <input type="text" id="company_box" name="query_company">
+    </div>
+
+    <div>
+      <label for="application_id_box">Application</label><br>
+      <input type="text" id="application_id_box" name="query_application_id">
+    </div>
+
+    <div style="width: 100%; margin-top: 10px;">
+      <label for="bio_box">Bio</label><br>
+      <textarea id="bio_box" name="query_bio" rows="3" style="width: 100%;"></textarea>
+    </div>
+
+    <div style="width: 100%; margin-top: 10px;">
+      <button>Create Contact</button>
+    </div>
+  </form>
+</div>
+
+<hr>
+<div>
+  <table border="1" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>LinkedIn</th>
+      <th>Bio</th>
+      <th>Application</th>
+      <th>Company</th>
+      <th>Actions</th>
+    </tr>
+
+    <% @list_of_contacts.each do |a_contact| %>
+      <tr>
+        <td><%= a_contact.id %></td>
+        <td><%= a_contact.email %></td>
+        <td><%= a_contact.phone %></td>
+        <td><%= a_contact.linkedin %></td>
+        <td><%= a_contact.bio.truncate(50) %></td>
+        <td><%= a_contact.application_id %></td>
+        <td><%= a_contact.company %></td>
+        <td>
+          <a href="/contacts/<%= a_contact.id %>">View</a> |
+          <a href="/modify_contact/<%= a_contact.id %>">Edit</a> |
+          <a href="/delete_contact/<%= a_contact.id %>" data-confirm="Are you sure?">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<hr>

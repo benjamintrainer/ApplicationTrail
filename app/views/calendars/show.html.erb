@@ -1,0 +1,117 @@
+<div>
+  <div>
+    <h1>
+      Calendar #<%= @the_calendar.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/calendars">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_calendar/<%= @the_calendar.id %>">
+          Delete calendar
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_calendar.title %>
+      </dd>
+
+      <dt>
+        Time
+      </dt>
+      <dd>
+        <%= @the_calendar.time %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @the_calendar.status %>
+      </dd>
+
+      <dt>
+        Application
+      </dt>
+      <dd>
+        <%= @the_calendar.application_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_calendar.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_calendar.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit calendar
+    </h2>
+
+    <form action="/modify_calendar/<%= @the_calendar.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_calendar.title %>">
+      </div>
+
+      <div>
+        <label for="time_box">
+          Time
+        </label>
+
+        <input type="datetime-local" id="time_box" name="query_time"
+         value="<%= @the_calendar.time %>">
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" value="<%= @the_calendar.status %>">
+      </div>
+
+      <div>
+        <label for="application_id_box">
+          Application
+        </label>
+
+        <input type="text" id="application_id_box" name="query_application_id" value="<%= @the_calendar.application_id %>">
+      </div>
+
+      <button>
+        Update calendar
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,67 @@
+<div>
+  <h1>Deadlines</h1>
+</div>
+
+<hr>
+
+<div>
+  <h2>Add a New Deadline</h2>
+
+  <form action="/insert_calendar" method="post" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+    
+    <div>
+      <label for="title_box">Title</label><br>
+      <input type="text" id="title_box" name="query_title">
+    </div>
+
+    <div>
+      <label for="time_box">Time</label><br>
+      <input type="datetime-local" id="time_box" name="query_time">
+    </div>
+
+    <div>
+      <label for="status_box">Status</label><br>
+      <input type="text" id="status_box" name="query_status">
+    </div>
+
+    <div>
+      <label for="application_id_box">Application</label><br>
+      <input type="text" id="application_id_box" name="query_application_id">
+    </div>
+
+    <div style="width: 100%; margin-top: 10px;">
+      <button>Create Deadline</button>
+    </div>
+  </form>
+</div>
+
+<hr>
+<div>
+  <table border="1" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Time</th>
+      <th>Status</th>
+      <th>Application</th>
+      <th>Actions</th>
+    </tr>
+
+    <% @list_of_calendars.each do |a_calendar| %>
+      <tr>
+        <td><%= a_calendar.id %></td>
+        <td><%= a_calendar.title %></td>
+        <td><%= a_calendar.time %></td>
+        <td><%= a_calendar.status %></td>
+        <td><%= a_calendar.application_id %></td>
+        <td>
+          <a href="/calendars/<%= a_calendar.id %>">View</a> |
+          <a href="/modify_calendar/<%= a_calendar.id %>">Edit</a> |
+          <a href="/delete_calendar/<%= a_calendar.id %>" data-confirm="Are you sure?">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<hr>

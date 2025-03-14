@@ -1,0 +1,90 @@
+<div>
+  <div>
+    <h1>
+      Applications
+    </h1>
+  </div>
+</div>
+<hr>
+<h3>Add a New Application</h3>
+
+<form action="/insert_application" method="post" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+  
+
+  <div>
+    <label for="role_box">Role</label><br>
+    <input type="text" id="role_box" name="query_role">
+  </div>
+
+  <div>
+    <label for="company_box">Company</label><br>
+    <input type="text" id="company_box" name="query_company">
+  </div>
+
+  <div>
+    <label for="location_box">Location</label><br>
+    <input type="text" id="location_box" name="query_location">
+  </div>
+
+  <div>
+    <label for="status_box">Status</label><br>
+    <select id="status_box" name="query_status">
+      <option value="applying">Applying</option>
+      <option value="applied">Applied</option>
+      <option value="interviewing">Interviewing</option>
+      <option value="offer">Offer</option>
+      <option value="rejected">Rejected</option>
+      <option value="withdrawn">Withdrawn</option>
+    </select>
+  </div>
+
+  <!-- Hidden User ID -->
+  <% if user_signed_in? && current_user %>
+    <input type="hidden" id="user_id_box" name="query_user_id" value="<%= current_user.id %>">
+  <% end %>
+
+
+
+  <div style="width: 100%; margin-top: 10px;">
+    <label for="description_box">Description</label><br>
+    <textarea id="description_box" name="query_description" rows="3" style="width: 100%;"></textarea>
+  </div>
+
+  <!-- Submit Button -->
+  <div style="width: 100%; margin-top: 10px;">
+    <button>Create Application</button>
+  </div>
+
+</form>
+
+<hr>
+<div>
+  <table border="1" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <th>ID</th>
+      <th>Role</th>
+      <th>Company</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+
+    <% @list_of_applications.each do |an_application| %>
+      <tr>
+        <td><%= an_application.id %></td>
+        <td><%= an_application.role %></td>
+        <td><%= an_application.company %></td>
+        <td><%= an_application.location %></td>
+        <td><%= an_application.status %></td>
+        <td><%= an_application.description.truncate(50) %></td>
+        <td>
+          <a href="/applications/<%= an_application.id %>">View</a> |
+          <a href="/applications/<%= an_application.id %>/edit">Edit</a> |
+          <a href="/delete_application/<%= an_application.id %>" data-confirm="Are you sure?">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<hr>

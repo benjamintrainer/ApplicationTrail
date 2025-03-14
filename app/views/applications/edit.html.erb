@@ -1,0 +1,34 @@
+<h1>Edit Application</h1>
+
+<%= form_with url: "/modify_application/#{@the_application.id}", method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :role, "Role" %>
+    <%= form.text_field :query_role, value: @the_application.role %>
+  </div>
+
+  <div>
+    <%= form.label :description, "Description" %>
+    <%= form.text_area :query_description, rows: 3, value: @the_application.description %>
+  </div>
+
+  <div>
+    <%= form.label :status, "Status" %>
+    <%= select_tag "query_status", options_for_select(["applied", "interviewing", "offer", "rejected", "withdrawn"], @the_application.status) %>
+  </div>
+
+  <div>
+    <%= form.label :company, "Company" %>
+    <%= form.text_field :query_company, value: @the_application.company %>
+  </div>
+
+  <div>
+    <%= form.label :location, "Location" %>
+    <%= form.text_field :query_location, value: @the_application.location %>
+  </div>
+
+  <%= hidden_field_tag "query_user_id", @the_application.user_id %>
+
+  <%= form.submit "Update Application" %>
+<% end %>
+
+<a href="/applications/<%= @the_application.id %>">Back to application details</a>
